@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<head>
+
+</head>
+<body>
+    <title>Upload Image File</title>
+<p>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class=flashes>
+                {% for message in messages %}
+                    <li>{{ messages }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</p>
+
+{% if filenames %}\
+    {% for filename in filenames%}
+        <div>
+            <img src="{{url_for('display_image', filename=filename)}}" width="270" height="270">
+        </div>
+    {% endfor %}
+{% endif %}
+
+<form method="post" action="/" enctype="multipart/form-data">
+    <dl>
+        <p>
+            <input type="file" name="file" autocomplete="off" required>
+        </p>
+    </dl>
+
+    <p>
+        <input type="submit" value="Submit">
+    </p>
+</form>
+</body>

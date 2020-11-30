@@ -8,7 +8,6 @@ import pickle
 import tensorflow as tf
 
 from keras.models import load_model
-# from keras.backend import set_session
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -18,21 +17,7 @@ import cv2
 ALLOWED_EXTENSIONS = set(['png','jpg','jpeg','gif'])
 em_arr = ['Angry','Disgust','Fear','Happy','Sad','Surprise','Neutral']
 
-# tf.compat.v1.disable_eager_execution()
-
-# global sess
-# sess = tf.compat.v1.Session()
-
-# global graph
-# graph = tf.compat.v1.get_default_graph()
-
-# init = tf.compat.v1.global_variables_initializer()
-# sess.run(init)
-
-# set_session(sess)
 model = load_model('./ml_models/model_2.h5')
-# model = pickle.load(open('./ml_models/model.pkl','rb'))
-
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.',1)[1].lower() in ALLOWED_EXTENSIONS
@@ -68,9 +53,7 @@ def upload_image():
 
         zeros_4dim = np.zeros(shape=(1,48,48,1))
         zeros_4dim[0] = image
-    
-        # with graph.as_default():
-        #     set_session(sess)
+
         predicted_probs = model.predict(zeros_4dim)
         
         plt.cla(); plt.clf(); plt.close();

@@ -4,7 +4,6 @@ import urllib.request
 from flask import Flask, flash, request, redirect, url_for, render_template
 from werkzeug.utils import secure_filename
 
-import pickle
 import tensorflow as tf
 
 from keras.models import load_model
